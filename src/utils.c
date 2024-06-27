@@ -6,7 +6,7 @@
 /*   By: lnicolos <lnicolos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:36:56 by lnicolos          #+#    #+#             */
-/*   Updated: 2024/06/20 19:27:42 by lnicolos         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:19:27 by lnicolos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,18 @@ int	is_map_empty(t_game *game)
 void	map_border_check(t_game *game)
 {
 	int	i;
-	int a;
-	int b;
+	int	a;
+	int	b;
+	int	x;
 
 	i = 0;
 	a = game->widthmap;
-	//ft_printf("lignes : %d\n", a);
-	//ft_printf("longueur = %d\n", b);
+	x = game->heightmap;
 	while (i != game->heightmap)
 	{
 		b = ft_strlen(game->map[i]) - 1;
-		ft_printf("lignes : %d\n", a);
-		ft_printf("longueur = %d\n", b);
+		if (x - 1 == i)
+			b++;
 		if (b != a)
 		{
 			ft_printf("Erreur, murs pas bien placés\n");

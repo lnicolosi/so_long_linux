@@ -6,21 +6,38 @@
 /*   By: lnicolos <lnicolos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:36:53 by lnicolos          #+#    #+#             */
-/*   Updated: 2024/06/20 17:26:55 by lnicolos         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:18:49 by lnicolos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/so_long.h"
+
+
 
 int	exit_point(t_game *game)
 {
 	int	line;
 
 	line = 0;
+	if (game->sol)
+		mlx_destroy_image(game->mlx_ptr, game->sol);
+	if (game->fleur)
+		mlx_destroy_image(game->mlx_ptr, game->fleur);
+	if (game->porte)
+		mlx_destroy_image(game->mlx_ptr, game->porte);
+	if (game->mur)
+		mlx_destroy_image(game->mlx_ptr, game->mur);
+	if (game->joueur)
+		mlx_destroy_image(game->mlx_ptr, game->joueur);
 	if (game->win_ptr)
+	{
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	}
 	if (game->mlx_ptr)
+	{
+		mlx_destroy_display(game->mlx_ptr);
 		free(game->mlx_ptr);
+	}
 	while (line < game->heightmap)
 	{
 		if (game->map[line])
@@ -32,7 +49,6 @@ int	exit_point(t_game *game)
 	exit(0);
 }
 
-//check si plus de 25 lignes pour main c'est ok
 int	main(int argc, char **argv)
 {
 	t_game	game;
